@@ -1,14 +1,14 @@
-Export and Sync iTunes Playlists
+Export and Sync Apple Music Playlists
 ================================
 
-Applescript to export playlists from iTunes and shell script to rsync them
+Applescript to export playlists from Apple Music and shell script to rsync them
 to a remote server.
 
 I have a Sonos system and I've set it up to look at my NAS for its music library
 and it can read m3u playlist files from a `playlists` directory in the music
-library. Unfortunately, iTunes only allows you to export playlists one at a
+library. Unfortunately, Music only allows you to export playlists one at a
 time. This Applescript (and helper shell script) are my solution to allow my
-family to easily sync their iTunes playlists with the Sonos system.
+family to easily sync their Music playlists with the Sonos system.
 
 Installation
 ------------
@@ -32,20 +32,20 @@ connect to):
         `ssh-copy-id -i $IDENTITY_FILE $REMOTE_USER@REMOTE_HOST`
 3. SSH into the remote server and prepend your new key's entry in authorized_keys
 with the following command (being sure to change `/path/to/target` to your desired path):
-        command="/usr/bin/rsync --server -vlogDtprc . /path/to/target",no-agent-forwarding,no-port-forwarding,no-pty,no-user-rc,no-X11-forwarding 
+        command="/usr/bin/rsync --server -vlogDtprc . /path/to/target",no-agent-forwarding,no-port-forwarding,no-pty,no-user-rc,no-X11-forwarding
 NB: if this doesn't work add another `v` into the flags for the command used in
 `rsync_playlists.sh` and copy the command that it has SSH run.
 
 #### Install the Applescript Application
 1. Edit `rsync_playlists.sh` and replace the placeholder variables with the
 values you actually want to use.
-2. Compile the applescript into an application, install it as an iTunes
+2. Compile the applescript into an application, install it as an Apple Music
 script, and move the rsync script into the same folder:
 ```
 osacompile -o "Sync Playlists.app" sync_playlists.applescript
-mkdir -p ~/Library/iTunes/Scripts
-mv "Sync Playlists.app" ~/Library/iTunes/Scripts/
-mv rsync_playlists.sh ~/Library/iTunes/Scripts/
+mkdir -p ~/Library/Music/Scripts
+mv "Sync Playlists.app" ~/Library/Music/Scripts/
+mv rsync_playlists.sh ~/Library/Music/Scripts/
 ```
 
 ### Sync over AFP
@@ -58,12 +58,12 @@ connects. If you're having this problem, search for "delay" in the script and
 increase the number.
 
 #### Install the Applescript Application
-Compile the applescript into an application and install it as an iTunes
+Compile the applescript into an application and install it as an Apple Music
 script:
 ```
 osacompile -o "Sync Playlists.app" sync_playlists_afp.applescript
-mkdir -p ~/Library/iTunes/Scripts
-mv "Sync Playlists.app" ~/Library/iTunes/Scripts/
+mkdir -p ~/Library/Music/Scripts
+mv "Sync Playlists.app" ~/Library/Music/Scripts/
 ```
 
 Credit
