@@ -48,7 +48,7 @@ mv "Sync Playlists.app" ~/Library/Music/Scripts/
 mv rsync_playlists.sh ~/Library/Music/Scripts/
 ```
 
-### Sync over AFP
+### Sync over SMB
 This requires far less setup -- everything is contained in the applescript file
 and you don't need to set up an SSH key, but it may be slower, and it requires
 the user to enter their username/password every time (or at least click the
@@ -61,7 +61,7 @@ increase the number.
 Compile the applescript into an application and install it as an Apple Music
 script:
 ```
-osacompile -o "Sync Playlists.app" sync_playlists_afp.applescript
+osacompile -o "Sync Playlists.app" sync_playlists_smb.applescript
 mkdir -p ~/Library/Music/Scripts
 mv "Sync Playlists.app" ~/Library/Music/Scripts/
 ```
@@ -75,3 +75,5 @@ project, which further exports the actual music files along with the (user
 selected) playlist files. I stripped mine down from that significantly, but
 am still making use of his `clean_name` function.
 
+I used Claude Code to help with modernization and debugging, and cleaned up
+what it gave me from there.
